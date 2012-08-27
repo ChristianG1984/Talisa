@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SachsenCoder.Talisa.WpfGui.Interfaces;
+using Microsoft.Win32;
 
 namespace SachsenCoder.Talisa.WpfGui
 {
@@ -22,6 +24,27 @@ namespace SachsenCoder.Talisa.WpfGui
         public MainWindow()
         {
             InitializeComponent();
+            InitializeDataContext(this.DataContext);
+            this.DataContextChanged += (sender, args) =>
+            {
+                InitializeDataContext(args.NewValue);
+            };
         }
+
+        private void InitializeDataContext(object dataCtx)
+        {
+            _openFileGuiRequester = dataCtx as IOpenFileGuiRequest;
+            if (_openFileGuiRequester != null) {
+                _openFileGuiRequester.RequestOpenFileGui += new Action<OpenFileGuiMessage>(RequestOpenFileGui);
+            }
+        }
+
+        private void RequestOpenFileGui(OpenFileGuiMessage obj)
+        {
+            var ofd = new OpenFileDialog();
+            ofd.ShowDialog(this);
+        }
+
+        private IOpenFileGuiRequest _openFileGuiRequester;
     }
 }
