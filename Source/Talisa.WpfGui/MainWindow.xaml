@@ -14,7 +14,7 @@
             <ColumnDefinition Width="80*" />
         </Grid.ColumnDefinitions>
         <Button Content="Open file ..." Command="{Binding OpenFileCommand}" FontSize="24" FontFamily="Segoe UI" />
-        <TextBox Grid.ColumnSpan="2" Grid.Row="1" Text="Hallo Welt!" FontFamily="Consolas" FontSize="16"
+        <TextBox Grid.ColumnSpan="2" Grid.Row="1" Text="{Binding FlowCode}" FontFamily="Consolas" FontSize="16"
                 TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
         <GridSplitter Height="4" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="Aqua" />
     </Grid>

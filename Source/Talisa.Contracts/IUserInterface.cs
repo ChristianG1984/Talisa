@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SachsenCoder.Talisa.Contracts
 {
-    public class Class1
+    public interface IUserInterface
     {
     }
 }
