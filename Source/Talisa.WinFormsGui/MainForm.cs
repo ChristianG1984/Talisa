@@ -16,5 +16,12 @@ namespace SachsenCoder.Talisa.WinFormsGui
         {
             InitializeComponent();
         }
+
+        public event Action<string> RawFlowCode;
+
+        private void txtFlowCode_TextChanged(object sender, EventArgs e)
+        {
+            RawFlowCode(txtFlowCode.Text);
+        }
     }
 }

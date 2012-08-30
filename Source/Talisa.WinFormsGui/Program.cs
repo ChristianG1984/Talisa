@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using SachsenCoder.Talisa.Core;
 
 namespace SachsenCoder.Talisa.WinFormsGui
 {
@@ -15,7 +16,11 @@ namespace SachsenCoder.Talisa.WinFormsGui
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            var mainForm = new MainForm();
+            var mainFlow = new MainFlow(mainForm);
+            
+            Application.Run(mainForm);
         }
     }
 }

@@ -82,6 +82,10 @@
       <Project>{A30E835E-3DA7-4769-8061-B37BEAABF2E6}</Project>
       <Name>Talisa.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Talisa.Core\Talisa.Core.csproj">
+      <Project>{02D6A1A1-5F31-4C87-A8D5-C1038699F068}</Project>
+      <Name>Talisa.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

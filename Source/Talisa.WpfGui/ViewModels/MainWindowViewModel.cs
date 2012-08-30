@@ -11,7 +11,7 @@ using SachsenCoder.Talisa.Contracts;
 
 namespace SachsenCoder.Talisa.WpfGui.ViewModels
 {
-    public class MainWindowViewModel : ViewModelBase, IUserInterface, IOpenFileGuiRequest
+    public class MainWindowViewModel : ViewModelBase, /*IUserInterface,*/ IOpenFileGuiRequest
     {
         public event Action<OpenFileGuiMessage> RequestOpenFileGui;
 

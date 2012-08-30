@@ -7,5 +7,6 @@ namespace SachsenCoder.Talisa.Contracts
 {
     public interface IUserInterface
     {
+        event Action<string> RawFlowCode;
     }
 }

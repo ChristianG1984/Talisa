@@ -28,8 +28,8 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.txtFlowCode = new System.Windows.Forms.TextBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.txtFlowCode = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -53,6 +53,14 @@
             this.splitContainer1.SplitterDistance = 261;
             this.splitContainer1.TabIndex = 0;
             // 
+            // treeView1
+            // 
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.Location = new System.Drawing.Point(0, 0);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(261, 562);
+            this.treeView1.TabIndex = 0;
+            // 
             // txtFlowCode
             // 
             this.txtFlowCode.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -63,14 +71,7 @@
             this.txtFlowCode.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtFlowCode.Size = new System.Drawing.Size(519, 562);
             this.txtFlowCode.TabIndex = 0;
-            // 
-            // treeView1
-            // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(261, 562);
-            this.treeView1.TabIndex = 0;
+            this.txtFlowCode.TextChanged += new System.EventHandler(this.txtFlowCode_TextChanged);
             // 
             // MainForm
             // 
