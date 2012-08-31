@@ -12,12 +12,12 @@ namespace SachsenCoder.Talisa.Core
         public MainFlow(IUserInterface ui)
         {
             _userInterface = ui;
-            _createFlowToken = new Create_Flow_Token();
+            _createFlowToken = new Create_Flow_Token_Collection();
 
             _userInterface.RawFlowCode += _createFlowToken.Process;
         }
 
         private IUserInterface _userInterface;
-        private Create_Flow_Token _createFlowToken;
+        private Create_Flow_Token_Collection _createFlowToken;
     }
 }

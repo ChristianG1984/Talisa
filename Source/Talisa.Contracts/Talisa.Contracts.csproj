@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\FlowToken.cs" />
+    <Compile Include="Data\FlowTokenTypeEnum.cs" />
     <Compile Include="IUserInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

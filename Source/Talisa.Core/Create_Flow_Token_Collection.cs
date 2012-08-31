@@ -6,7 +6,7 @@ using SachsenCoder.Talisa.Contracts.Data;
 
 namespace SachsenCoder.Talisa.Core
 {
-    public class Create_Flow_Token
+    public class Create_Flow_Token_Collection
     {
         public void Process(string data)
         {
