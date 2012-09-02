@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\FlowAst.cs" />
     <Compile Include="Data\FlowToken.cs" />
     <Compile Include="Data\FlowTokenTypeEnum.cs" />
     <Compile Include="IUserInterface.cs" />
