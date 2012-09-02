@@ -28,7 +28,7 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.treeFlowToken = new System.Windows.Forms.TreeView();
             this.txtFlowCode = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -44,7 +44,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.treeView1);
+            this.splitContainer1.Panel1.Controls.Add(this.treeFlowToken);
             // 
             // splitContainer1.Panel2
             // 
@@ -53,13 +53,13 @@
             this.splitContainer1.SplitterDistance = 261;
             this.splitContainer1.TabIndex = 0;
             // 
-            // treeView1
+            // treeFlowToken
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(261, 562);
-            this.treeView1.TabIndex = 0;
+            this.treeFlowToken.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeFlowToken.Location = new System.Drawing.Point(0, 0);
+            this.treeFlowToken.Name = "treeFlowToken";
+            this.treeFlowToken.Size = new System.Drawing.Size(261, 562);
+            this.treeFlowToken.TabIndex = 0;
             // 
             // txtFlowCode
             // 
@@ -93,7 +93,7 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView treeFlowToken;
         private System.Windows.Forms.TextBox txtFlowCode;
     }
 }
