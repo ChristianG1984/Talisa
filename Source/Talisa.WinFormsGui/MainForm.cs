@@ -27,7 +27,7 @@ namespace SachsenCoder.Talisa.WinFormsGui
 
         public void ReceiveFlowTokenList(IEnumerable<FlowToken> data)
         {
-            treeFlowToken.SuspendLayout();
+            treeFlowToken.BeginUpdate();
             treeFlowToken.Nodes.Clear();
             foreach (var d in data) {
                 var node = new TreeNode();
@@ -38,7 +38,7 @@ namespace SachsenCoder.Talisa.WinFormsGui
                 node.ExpandAll();
                 treeFlowToken.Nodes.Add(node);
             }
-            treeFlowToken.ResumeLayout();
+            treeFlowToken.EndUpdate();
         }
     }
 }
