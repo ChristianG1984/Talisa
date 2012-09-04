@@ -13,19 +13,21 @@ namespace SachsenCoder.Talisa.Core
         {
             var commentPattern = new FlowPattern();
             commentPattern
-                .StartsWith(FlowTokenTypeEnum.HashSign)
+                .StartsWith(new FlowPatternElement(FlowTokenTypeEnum.HashSign))
                 .Then().CanHaveAny()
-                .EndsWith(FlowTokenTypeEnum.Linefeed);
+                .EndsWith(new FlowPatternElement(FlowTokenTypeEnum.Linefeed));
 
             var matcher = new FlowPatternMatcher();
             matcher.Add(commentPattern);
 
-            var tempFlowTokenList = new List<FlowToken>();
-            FlowToken currentFlowToken = null;
-            FlowToken previousFlowToken = null;
+            //var tempFlowTokenList = new List<FlowToken>();
+            //FlowToken currentFlowToken = null;
+            //FlowToken previousFlowToken = null;
 
             foreach (var d in data) {
-
+                if (matcher.MatchAgainst(d.TokenType) == false) {
+                    continue;
+                }
             }
         }
 

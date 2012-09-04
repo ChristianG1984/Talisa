@@ -10,12 +10,12 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
     {
         public FlowPattern()
         {
-            _startFlowTokens = new List<FlowTokenTypeEnum>();
-            _endFlowTokens = new List<FlowTokenTypeEnum>();
+            _startFlowTokens = new List<FlowPatternElement>();
+            _endFlowTokens = new List<FlowPatternElement>();
             _allowAnyBetween = false;
         }
 
-        public FlowPattern StartsWith(params FlowTokenTypeEnum[] startFlowTokens)
+        public FlowPattern StartsWith(params FlowPatternElement[] startFlowTokens)
         {
             _startFlowTokens.Clear();
             _startFlowTokens.AddRange(startFlowTokens);
@@ -33,14 +33,19 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
             return this;
         }
 
-        public void EndsWith(params FlowTokenTypeEnum[] endFlowTokens)
+        public void EndsWith(params FlowPatternElement[] endFlowTokens)
         {
             _endFlowTokens.Clear();
             _endFlowTokens.AddRange(endFlowTokens);
         }
 
-        private List<FlowTokenTypeEnum> _startFlowTokens;
-        private List<FlowTokenTypeEnum> _endFlowTokens;
+        public bool DoesMatch(FlowTokenTypeEnum flowTokenType)
+        {
+            throw new NotImplementedException();
+        }
+
+        private List<FlowPatternElement> _startFlowTokens;
+        private List<FlowPatternElement> _endFlowTokens;
         private bool _allowAnyBetween;
     }
 }

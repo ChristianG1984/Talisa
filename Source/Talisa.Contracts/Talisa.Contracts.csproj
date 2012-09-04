@@ -46,6 +46,7 @@
     <Compile Include="IUserInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmartData\FlowPattern.cs" />
+    <Compile Include="SmartData\FlowPatternElement.cs" />
     <Compile Include="SmartData\FlowPatternMatcher.cs" />
   </ItemGroup>
   <ItemGroup />
