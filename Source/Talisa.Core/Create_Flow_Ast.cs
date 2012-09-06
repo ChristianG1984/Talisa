@@ -11,7 +11,7 @@ namespace SachsenCoder.Talisa.Core
     {
         public void Process(IEnumerable<FlowToken> data)
         {
-            var commentPattern = new FlowPattern();
+            var commentPattern = new FlowPattern(AstElementTypeEnum.Comment);
             commentPattern
                 .StartsWith(new FlowPatternElement(FlowTokenTypeEnum.HashSign))
                 .Then().CanHaveAny()
@@ -25,7 +25,7 @@ namespace SachsenCoder.Talisa.Core
             //FlowToken previousFlowToken = null;
 
             foreach (var d in data) {
-                if (matcher.MatchAgainst(d.TokenType) == false) {
+                if (matcher.MatchAgainst(d) == false) {
                     continue;
                 }
             }

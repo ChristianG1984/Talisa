@@ -11,6 +11,7 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
         public FlowPatternMatcher()
         {
             _flowPatterns = new List<FlowPattern>();
+            _patternStack = new Stack<FlowPattern>();
         }
 
         public void Add(FlowPattern flowPattern)
@@ -18,16 +19,19 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
             _flowPatterns.Add(flowPattern);
         }
 
-        public bool MatchAgainst(FlowTokenTypeEnum flowTokenType)
+        public bool MatchAgainst(FlowToken flowToken)
         {
-            foreach (var pattern in _flowPatterns) {
-                if (pattern.DoesMatch(flowTokenType) == true) {
+            if (_patternStack.Count > 0) {
+            }
 
+            foreach (var pattern in _flowPatterns) {
+                if (pattern.DoesMatch(flowToken) == true) {
+                    _patternStack.Push(pattern);
                 }
             }
-            throw new NotImplementedException();
         }
 
         private List<FlowPattern> _flowPatterns;
+        private Stack<FlowPattern> _patternStack;
     }
 }
