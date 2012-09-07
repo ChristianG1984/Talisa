@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\AstComment.cs" />
     <Compile Include="Data\AstElementTypeEnum.cs" />
     <Compile Include="Data\FlowAst.cs" />
+    <Compile Include="Data\FlowAstElement.cs" />
     <Compile Include="Data\FlowToken.cs" />
     <Compile Include="Data\FlowTokenTypeEnum.cs" />
     <Compile Include="IUserInterface.cs" />

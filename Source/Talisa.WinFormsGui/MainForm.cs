@@ -40,5 +40,21 @@ namespace SachsenCoder.Talisa.WinFormsGui
             }
             treeFlowToken.EndUpdate();
         }
+
+        public void ReceiveFlowAst(FlowAst data)
+        {
+            treeFlowAst.BeginUpdate();
+            treeFlowAst.Nodes.Clear();
+            foreach (var flowElement in data.FlowAstElements) {
+                var node = new TreeNode();
+                node.Text = flowElement.AstElementType.ToString();
+                if (flowElement.AstElementType == AstElementTypeEnum.Comment) {
+                    node.Nodes.Add((flowElement.Content as AstComment).RealContent);
+                }
+                node.ExpandAll();
+                treeFlowAst.Nodes.Add(node);
+            }
+            treeFlowAst.EndUpdate();
+        }
     }
 }

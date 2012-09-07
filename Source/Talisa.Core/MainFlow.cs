@@ -18,6 +18,7 @@ namespace SachsenCoder.Talisa.Core
             _userInterface.RawFlowCode += _createFlowToken.Process;
             _createFlowToken.Result += _userInterface.ReceiveFlowTokenList;
             _createFlowToken.Result += _createFlowAst.Process;
+            _createFlowAst.Result += _userInterface.ReceiveFlowAst;
         }
 
         private readonly IUserInterface _userInterface;

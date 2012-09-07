@@ -28,10 +28,10 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.treeFlowToken = new System.Windows.Forms.TreeView();
-            this.txtFlowCode = new System.Windows.Forms.TextBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.treeFlowToken = new System.Windows.Forms.TreeView();
+            this.treeFlowAst = new System.Windows.Forms.TreeView();
+            this.txtFlowCode = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -59,26 +59,6 @@
             this.splitContainer1.SplitterDistance = 261;
             this.splitContainer1.TabIndex = 0;
             // 
-            // treeFlowToken
-            // 
-            this.treeFlowToken.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeFlowToken.Location = new System.Drawing.Point(0, 0);
-            this.treeFlowToken.Name = "treeFlowToken";
-            this.treeFlowToken.Size = new System.Drawing.Size(261, 259);
-            this.treeFlowToken.TabIndex = 0;
-            // 
-            // txtFlowCode
-            // 
-            this.txtFlowCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtFlowCode.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFlowCode.Location = new System.Drawing.Point(0, 0);
-            this.txtFlowCode.Multiline = true;
-            this.txtFlowCode.Name = "txtFlowCode";
-            this.txtFlowCode.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtFlowCode.Size = new System.Drawing.Size(519, 562);
-            this.txtFlowCode.TabIndex = 0;
-            this.txtFlowCode.TextChanged += new System.EventHandler(this.txtFlowCode_TextChanged);
-            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -92,18 +72,38 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.treeView1);
+            this.splitContainer2.Panel2.Controls.Add(this.treeFlowAst);
             this.splitContainer2.Size = new System.Drawing.Size(261, 562);
             this.splitContainer2.SplitterDistance = 259;
             this.splitContainer2.TabIndex = 1;
             // 
-            // treeView1
+            // treeFlowToken
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(261, 299);
-            this.treeView1.TabIndex = 0;
+            this.treeFlowToken.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeFlowToken.Location = new System.Drawing.Point(0, 0);
+            this.treeFlowToken.Name = "treeFlowToken";
+            this.treeFlowToken.Size = new System.Drawing.Size(261, 259);
+            this.treeFlowToken.TabIndex = 0;
+            // 
+            // treeFlowAst
+            // 
+            this.treeFlowAst.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeFlowAst.Location = new System.Drawing.Point(0, 0);
+            this.treeFlowAst.Name = "treeFlowAst";
+            this.treeFlowAst.Size = new System.Drawing.Size(261, 299);
+            this.treeFlowAst.TabIndex = 0;
+            // 
+            // txtFlowCode
+            // 
+            this.txtFlowCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtFlowCode.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFlowCode.Location = new System.Drawing.Point(0, 0);
+            this.txtFlowCode.Multiline = true;
+            this.txtFlowCode.Name = "txtFlowCode";
+            this.txtFlowCode.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtFlowCode.Size = new System.Drawing.Size(519, 562);
+            this.txtFlowCode.TabIndex = 0;
+            this.txtFlowCode.TextChanged += new System.EventHandler(this.txtFlowCode_TextChanged);
             // 
             // MainForm
             // 
@@ -132,7 +132,7 @@
         private System.Windows.Forms.TreeView treeFlowToken;
         private System.Windows.Forms.TextBox txtFlowCode;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView treeFlowAst;
     }
 }
 

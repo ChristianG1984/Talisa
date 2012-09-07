@@ -65,7 +65,13 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
                     if (HandleEndFlowPatternElement(_endFlowEnumerator.Current, flowToken) == false) {
                         _matchedTokens.Add(flowToken);
                         _endFlowEnumerator.Reset();
+                        return true;
+                    } else {
+                        return true;
                     }
+                } else {
+                    CreateResult(MatchResultEnum.Complete);
+                    return true;
                 }
             } else if (_endFlowEnumerator.MoveNext() == true) {
 
