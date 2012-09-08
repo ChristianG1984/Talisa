@@ -7,7 +7,15 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
 {
     public enum MatchResultEnum
     {
-        Partial,
-        Complete
+        StartMismatch,
+        StartPartialMatch,
+        StartFullMatch,
+        MiddleMismatch,
+        MiddlePartialMatch,
+        MiddleFullMatch,
+        EndMismatch,
+        EndPartialMatch,
+        EndFullMatch,
+        UnknownState
     }
 }

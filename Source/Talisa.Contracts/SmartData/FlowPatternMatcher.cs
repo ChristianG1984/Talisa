@@ -12,6 +12,7 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
         {
             _flowPatterns = new List<FlowPattern>();
             _patternQueue = new Queue<FlowPattern>();
+            _defaultResult = new MatchResult(AstElementTypeEnum.Unknown, MatchResultEnum.UnknownState, null);
         }
 
         public void Add(FlowPattern flowPattern)
@@ -19,34 +20,40 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
             _flowPatterns.Add(flowPattern);
         }
 
-        public bool MatchAgainst(FlowToken flowToken)
+        public MatchResult MatchAgainst(FlowToken flowToken)
         {
-            bool matchSuccess = false;
+            MatchResult result = _defaultResult;
 
             while (_patternQueue.Count > 0) {
                 var patternQueueElement = _patternQueue.Peek();
-                if (patternQueueElement.DoesMatch(flowToken) == true) {
-                    MatchResult = patternQueueElement.MatchResult;
-                    return true;
-                } else {
+                result = patternQueueElement.DoesMatch(flowToken);
+                if (result.MatchResultType == MatchResultEnum.EndFullMatch) {
                     _patternQueue.Dequeue().Reset();
                 }
+                return result;
             }
 
+            MatchResult firstMatch = null;
+
             foreach (var pattern in _flowPatterns) {
-                if (pattern.DoesMatch(flowToken) == true) {
-                    MatchResult = pattern.MatchResult;
+                result = pattern.DoesMatch(flowToken);
+                if (result.MatchResultType == MatchResultEnum.StartPartialMatch ||
+                    result.MatchResultType == MatchResultEnum.StartFullMatch) {
                     _patternQueue.Enqueue(pattern);
-                    matchSuccess = true;
+                    if (firstMatch == null) {
+                        firstMatch = result;
+                    }
                 }
             }
 
-            return matchSuccess;
+            if (firstMatch != null) {
+                return firstMatch;
+            }
+            return result;
         }
-
-        public MatchResult MatchResult { get; private set; }
 
         private List<FlowPattern> _flowPatterns;
         private Queue<FlowPattern> _patternQueue;
+        private MatchResult _defaultResult;
     }
 }

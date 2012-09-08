@@ -45,47 +45,51 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
             Reset();
         }
 
-        public bool DoesMatch(FlowToken flowToken)
+        public MatchResult DoesMatch(FlowToken flowToken)
         {
             if (_patternStack.Count > 0) {
                 return _patternStack.Pop().DoesMatch(flowToken);
             }
-
-            if (_startFlowEnumerator.MoveNext() == true) {
-                if (_startFlowEnumerator.Current.IsFlowTokenTypeEnum &&
-                    (FlowTokenTypeEnum)_startFlowEnumerator.Current.Content == flowToken.TokenType) {
-                        _matchedTokens.Add(flowToken);
-                        CreateResult(MatchResultEnum.Partial);
-                        return true;
-                } else if (_startFlowEnumerator.Current.IsFlowPattern) {
-                    return ((FlowPattern)_startFlowEnumerator.Current.Content).DoesMatch(flowToken);
-                }
+            
+            if (_currentStart != null) {
+                return handleStartFlowPatternElement(flowToken);
             } else if (_allowAnyBetween == true) {
-                if (_endFlowEnumerator.MoveNext() == true) {
-                    if (HandleEndFlowPatternElement(_endFlowEnumerator.Current, flowToken) == false) {
+                if (_currentEnd != null) {
+                    var result = handleEndFlowPatternElement(flowToken);
+                    if (result.MatchResultType == MatchResultEnum.EndMismatch) {
                         _matchedTokens.Add(flowToken);
-                        _endFlowEnumerator.Reset();
-                        return true;
+                        //_endFlowEnumerator.Reset();
+                        return CreateResult(MatchResultEnum.MiddlePartialMatch);
                     } else {
-                        return true;
+                        return result;
                     }
                 } else {
-                    CreateResult(MatchResultEnum.Complete);
-                    return true;
+                    return CreateResult(MatchResultEnum.EndFullMatch);
                 }
-            } else if (_endFlowEnumerator.MoveNext() == true) {
+            } else if (_currentEnd != null) {
 
             }
-            return false;
+            return CreateResult(MatchResultEnum.UnknownState);
         }
 
         public void Reset()
         {
+            _currentStart = null;
+            _currentMiddle = null;
+            _currentEnd = null;
             _startFlowEnumerator = _startFlowTokens.GetEnumerator();
             _middleFlowEnumerator = _middleFlowTokens.GetEnumerator();
             _endFlowEnumerator = _endFlowTokens.GetEnumerator();
+            if (_startFlowEnumerator.MoveNext() == true) {
+                _currentStart = _startFlowEnumerator.Current;
+            }
+            if (_middleFlowEnumerator.MoveNext() == true) {
+                _currentMiddle = _middleFlowEnumerator.Current;
+            }
+            if (_endFlowEnumerator.MoveNext() == true) {
+                _currentEnd = _endFlowEnumerator.Current;
+            }
             _matchedTokens.Clear();
-            MatchResult = null;
             foreach (var pattern in _patternStack) {
                 pattern.Reset();
             }
@@ -93,24 +97,45 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
         }
 
         public AstElementTypeEnum AstElementType { get; private set; }
-        public MatchResult MatchResult { get; private set; }
 
-        private void CreateResult(MatchResultEnum matchResultEnum)
+        private MatchResult CreateResult(MatchResultEnum matchResultEnum)
         {
-            MatchResult = new MatchResult(AstElementType, matchResultEnum, _matchedTokens);
+            return new MatchResult(AstElementType, matchResultEnum, new List<FlowToken>(_matchedTokens));
         }
 
-        private bool HandleEndFlowPatternElement(FlowPatternElement flowPatternElement, FlowToken flowToken)
+        private MatchResult handleStartFlowPatternElement(FlowToken flowToken)
         {
-            if (flowPatternElement.IsFlowTokenTypeEnum &&
-                (FlowTokenTypeEnum)flowPatternElement.Content == flowToken.TokenType) {
+            if (_currentStart.IsFlowTokenTypeEnum &&
+                (FlowTokenTypeEnum)_currentStart.Content == flowToken.TokenType) {
                 _matchedTokens.Add(flowToken);
-                CreateResult(MatchResultEnum.Partial);
-                return true;
-            } else if (flowPatternElement.IsFlowPattern) {
-                return ((FlowPattern)flowPatternElement.Content).DoesMatch(flowToken);
+                if (_startFlowEnumerator.MoveNext() == true) {
+                    _currentStart = _startFlowEnumerator.Current;
+                    return CreateResult(MatchResultEnum.StartPartialMatch);
+                } else {
+                    _currentStart = null;
+                    return CreateResult(MatchResultEnum.StartFullMatch);
+                }
+            } else if (_currentStart.IsFlowPattern) {
+                return ((FlowPattern)_currentStart.Content).DoesMatch(flowToken);
             }
-            return false;
+            return CreateResult(MatchResultEnum.StartMismatch);
+        }
+
+        private MatchResult handleEndFlowPatternElement(FlowToken flowToken)
+        {
+            if (_currentEnd.IsFlowTokenTypeEnum &&
+                (FlowTokenTypeEnum)_currentEnd.Content == flowToken.TokenType) {
+                _matchedTokens.Add(flowToken);
+                if (_endFlowEnumerator.MoveNext() == true) {
+                    _currentEnd = _endFlowEnumerator.Current;
+                    return CreateResult(MatchResultEnum.EndPartialMatch);
+                } else {
+                    return CreateResult(MatchResultEnum.EndFullMatch);
+                }
+            } else if (_currentEnd.IsFlowPattern) {
+                return ((FlowPattern)_currentEnd.Content).DoesMatch(flowToken);
+            }
+            return CreateResult(MatchResultEnum.EndMismatch);
         }
 
         private List<FlowPatternElement> _startFlowTokens;
@@ -119,6 +144,9 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
         private IEnumerator<FlowPatternElement> _startFlowEnumerator;
         private IEnumerator<FlowPatternElement> _middleFlowEnumerator;
         private IEnumerator<FlowPatternElement> _endFlowEnumerator;
+        private FlowPatternElement _currentStart;
+        private FlowPatternElement _currentMiddle;
+        private FlowPatternElement _currentEnd;
         private Stack<FlowPattern> _patternStack;
         private List<FlowToken> _matchedTokens;
         private bool _allowAnyBetween;

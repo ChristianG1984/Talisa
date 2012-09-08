@@ -7,6 +7,7 @@ namespace SachsenCoder.Talisa.Contracts.Data
 {
     public enum AstElementTypeEnum
     {
-        Comment
+        Comment,
+        Unknown
     }
 }

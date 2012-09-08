@@ -24,18 +24,20 @@ namespace SachsenCoder.Talisa.Core
             //FlowToken currentFlowToken = null;
             //FlowToken previousFlowToken = null;
             var flowAst = new FlowAst();
+            MatchResult result = null;
 
             foreach (var d in data) {
-                if (matcher.MatchAgainst(d) == false) {
-                    continue;
-                }
+                result = matcher.MatchAgainst(d);
 
-                if (matcher.MatchResult.MatchResultType == MatchResultEnum.Complete &&
-                    matcher.MatchResult.AstElementType == AstElementTypeEnum.Comment) {
-                        flowAst.Add(new FlowAstElement(new AstComment(matcher.MatchResult.FlowTokens), AstElementTypeEnum.Comment));
+                if (result.MatchResultType == MatchResultEnum.EndFullMatch &&
+                    result.AstElementType == AstElementTypeEnum.Comment) {
+                        flowAst.Add(new FlowAstElement(new AstComment(result.FlowTokens), AstElementTypeEnum.Comment));
                 }
             }
 
+            //if (result != null) {
+
+            //}
             Result(flowAst);
         }
 
