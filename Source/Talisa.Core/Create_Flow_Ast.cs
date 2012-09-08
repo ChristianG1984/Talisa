@@ -11,11 +11,11 @@ namespace SachsenCoder.Talisa.Core
     {
         public void Process(IEnumerable<FlowToken> data)
         {
-            var commentPattern = new FlowPattern();
+            var commentPattern = new FlowPattern(FlowAstElementTypeEnum.Comment);
             commentPattern
-                .StartsWith(FlowTokenTypeEnum.HashSign)
+                .Has(FlowTokenTypeEnum.HashSign)
                 .Then().CanHaveAny()
-                .EndsWith(FlowTokenTypeEnum.Linefeed);
+                .Then().Has(FlowTokenTypeEnum.Linefeed);
 
             var matcher = new FlowPatternMatcher();
             matcher.Add(commentPattern);

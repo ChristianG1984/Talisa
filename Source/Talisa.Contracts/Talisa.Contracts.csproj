@@ -41,12 +41,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\FlowAst.cs" />
+    <Compile Include="Data\FlowAstElementTypeEnum.cs" />
     <Compile Include="Data\FlowToken.cs" />
     <Compile Include="Data\FlowTokenTypeEnum.cs" />
     <Compile Include="IUserInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmartData\FlowPattern.cs" />
     <Compile Include="SmartData\FlowPatternMatcher.cs" />
+    <Compile Include="SmartData\MicroMatcher.cs" />
+    <Compile Include="SmartData\MicroMatcherMetaInfoEnum.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
