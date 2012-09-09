@@ -14,6 +14,12 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
             _baseMicroMatcher = new MicroMatcher(_flowAstElementType);
             _currentMicroMatcher = _baseMicroMatcher;
             _matcherToAssignMetaInfo = _currentMicroMatcher;
+            _matcherToMatchAgainstNext = _currentMicroMatcher;
+        }
+
+        public FlowPatternResult Match(FlowToken d)
+        {
+            var result = _matcherToMatchAgainstNext.Match(d.TokenType);
         }
 
         public FlowPattern Has(params FlowTokenTypeEnum[] startFlowTokens)
@@ -34,9 +40,14 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
             return this;
         }
 
-        public FlowPattern CanHaveAny()
+        public FlowPattern CanHaveAnyToken()
         {
             return WithMetaInfos(MicroMatcherMetaInfoEnum.AnyTokenAllowed);
+        }
+
+        public FlowPattern WithEndlessCount()
+        {
+            return WithMetaInfos(MicroMatcherMetaInfoEnum.WithEndlessCount);
         }
 
         private void addNewMatcher()
@@ -78,6 +89,7 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
         private MicroMatcher _baseMicroMatcher;
         private MicroMatcher _currentMicroMatcher;
         private MicroMatcher _matcherToAssignMetaInfo;
+        private MicroMatcher _matcherToMatchAgainstNext;
         private FlowAstElementTypeEnum _flowAstElementType;
     }
 }

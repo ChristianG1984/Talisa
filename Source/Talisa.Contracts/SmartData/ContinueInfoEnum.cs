@@ -5,10 +5,9 @@ using System.Text;
 
 namespace SachsenCoder.Talisa.Contracts.SmartData
 {
-    public enum MicroMatcherMetaInfoEnum
+    public enum ContinueInfoEnum
     {
-        AnyTokenAllowed,
-        IsSeparator,
-        WithEndlessCount
+        TakeBaseMatcher,
+        TakeMyMatcher
     }
 }

@@ -46,10 +46,13 @@
     <Compile Include="Data\FlowTokenTypeEnum.cs" />
     <Compile Include="IUserInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SmartData\ContinueInfoEnum.cs" />
     <Compile Include="SmartData\FlowPattern.cs" />
-    <Compile Include="SmartData\FlowPatternMatcher.cs" />
+    <Compile Include="SmartData\FlowPatternResult.cs" />
     <Compile Include="SmartData\MicroMatcher.cs" />
     <Compile Include="SmartData\MicroMatcherMetaInfoEnum.cs" />
+    <Compile Include="SmartData\MicroMatcherResult.cs" />
+    <Compile Include="SmartData\SuccessInfoEnum.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

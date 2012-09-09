@@ -14,18 +14,13 @@ namespace SachsenCoder.Talisa.Core
             var commentPattern = new FlowPattern(FlowAstElementTypeEnum.Comment);
             commentPattern
                 .Has(FlowTokenTypeEnum.HashSign)
-                .Then().CanHaveAny()
-                .Then().Has(FlowTokenTypeEnum.Linefeed);
+                .Then().CanHaveAnyToken().WithEndlessCount()
+                .Then().Has(FlowTokenTypeEnum.Linefeed).WithMetaInfos(MicroMatcherMetaInfoEnum.IsSeparator);
 
-            var matcher = new FlowPatternMatcher();
-            matcher.Add(commentPattern);
-
-            var tempFlowTokenList = new List<FlowToken>();
-            FlowToken currentFlowToken = null;
-            FlowToken previousFlowToken = null;
+            FlowPatternResult result;
 
             foreach (var d in data) {
-
+                result = commentPattern.Match(d);
             }
         }
 
