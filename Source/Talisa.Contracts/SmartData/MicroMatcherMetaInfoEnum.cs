@@ -8,7 +8,7 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
     public enum MicroMatcherMetaInfoEnum
     {
         AnyTokenAllowed,
-        IsSeparator,
+        TerminateEndlessCount,
         WithEndlessCount
     }
 }

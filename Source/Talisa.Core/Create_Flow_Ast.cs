@@ -15,7 +15,7 @@ namespace SachsenCoder.Talisa.Core
             commentPattern
                 .Has(FlowTokenTypeEnum.HashSign)
                 .Then().CanHaveAnyToken().WithEndlessCount()
-                .Then().Has(FlowTokenTypeEnum.Linefeed).WithMetaInfos(MicroMatcherMetaInfoEnum.IsSeparator);
+                .Then().Has(FlowTokenTypeEnum.Linefeed).TerminateEndlessCount();
 
             FlowPatternResult result;
 

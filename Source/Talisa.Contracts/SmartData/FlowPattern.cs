@@ -50,6 +50,11 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
             return WithMetaInfos(MicroMatcherMetaInfoEnum.WithEndlessCount);
         }
 
+        public FlowPattern TerminateEndlessCount()
+        {
+            return WithMetaInfos(MicroMatcherMetaInfoEnum.TerminateEndlessCount);
+        }
+
         private void addNewMatcher()
         {
             while (_currentMicroMatcher.HasNextMatcher) {
@@ -86,7 +91,7 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
             _matcherToAssignMetaInfo = tempMatcher;
         }
 
-        private MicroMatcher _baseMicroMatcher;
+        private readonly MicroMatcher _baseMicroMatcher;
         private MicroMatcher _currentMicroMatcher;
         private MicroMatcher _matcherToAssignMetaInfo;
         private MicroMatcher _matcherToMatchAgainstNext;

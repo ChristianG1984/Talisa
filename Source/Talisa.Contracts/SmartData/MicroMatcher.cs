@@ -59,11 +59,23 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
 
         private MicroMatcherResult targetMatched_hasNext()
         {
+            if (hasMetaInfo(MicroMatcherMetaInfoEnum.WithEndlessCount)) {
+                if (Next.hasMetaInfo(MicroMatcherMetaInfoEnum.TerminateEndlessCount) && Next._target == _tokenToTest) {
+                    if (Next.HasNextMatcher) {
+                        return new MicroMatcherResult(SuccessInfoEnum.PartialMatch, Next.Next);
+                    }
+                    return new MicroMatcherResult(SuccessInfoEnum.FullMatch, ContinueInfoEnum.TakeBaseMatcher);
+                }
+                return new MicroMatcherResult(SuccessInfoEnum.PartialMatch, this);
+            }
             return new MicroMatcherResult(SuccessInfoEnum.PartialMatch, Next);
         }
 
         private MicroMatcherResult targetMatched_hasNoNext()
         {
+            if (hasMetaInfo(MicroMatcherMetaInfoEnum.WithEndlessCount)) {
+                return new MicroMatcherResult(SuccessInfoEnum.EndlessMatch, this);
+            }
             return new MicroMatcherResult(SuccessInfoEnum.FullMatch, ContinueInfoEnum.TakeBaseMatcher);
         }
 
@@ -79,11 +91,6 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
         {
             if (hasMetaInfo(MicroMatcherMetaInfoEnum.AnyTokenAllowed)) {
                 return targetMatched_hasNoNext();
-            }
-            if (hasMetaInfo(MicroMatcherMetaInfoEnum.IsSeparator)) {
-                if (HasPreviousMatcher && Previous.hasMetaInfo(MicroMatcherMetaInfoEnum.AnyTokenAllowed)) {
-
-                }
             }
             return new MicroMatcherResult(SuccessInfoEnum.NoMatch, ContinueInfoEnum.TakeBaseMatcher);
         }
