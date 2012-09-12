@@ -10,5 +10,6 @@ namespace SachsenCoder.Talisa.Contracts
     {
         event Action<string> RawFlowCode;
         void ReceiveFlowTokenList(IEnumerable<FlowToken> data);
+        void ReceiveFlowAst(FlowAst flowAst);
     }
 }

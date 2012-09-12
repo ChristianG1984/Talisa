@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using SachsenCoder.Talisa.Contracts.Data;
 
-namespace SachsenCoder.Talisa.Core
+namespace SachsenCoder.Talisa.Core.Leafs
 {
     public class Create_Flow_Token_Collection
     {

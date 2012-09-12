@@ -40,9 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Create_Flow_Ast.cs" />
-    <Compile Include="Create_Flow_Token_Collection.cs" />
-    <Compile Include="MainFlow.cs" />
+    <Compile Include="Leafs\Create_Flow_Ast.cs" />
+    <Compile Include="Leafs\Create_Flow_PatternResult.cs" />
+    <Compile Include="Leafs\Create_Flow_Token_Collection.cs" />
+    <Compile Include="CoreEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +51,9 @@
       <Project>{A30E835E-3DA7-4769-8061-B37BEAABF2E6}</Project>
       <Name>Talisa.Contracts</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Composite\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

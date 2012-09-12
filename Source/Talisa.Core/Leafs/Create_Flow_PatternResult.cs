@@ -5,9 +5,9 @@ using System.Text;
 using SachsenCoder.Talisa.Contracts.Data;
 using SachsenCoder.Talisa.Contracts.SmartData;
 
-namespace SachsenCoder.Talisa.Core
+namespace SachsenCoder.Talisa.Core.Leafs
 {
-    public class Create_Flow_Ast
+    public class Create_Flow_PatternResult
     {
         public void Process(IEnumerable<FlowToken> data)
         {
@@ -17,13 +17,15 @@ namespace SachsenCoder.Talisa.Core
                 .Then().CanHaveAnyToken().WithEndlessCount()
                 .Then().Has(FlowTokenTypeEnum.Linefeed).TerminateEndlessCount();
 
-            FlowPatternResult result;
+            FlowPatternResult result = null;
 
             foreach (var d in data) {
                 result = commentPattern.Match(d);
             }
+
+            Result(result);
         }
 
-        public event Action<FlowAst> Result;
+        public event Action<FlowPatternResult> Result;
     }
 }

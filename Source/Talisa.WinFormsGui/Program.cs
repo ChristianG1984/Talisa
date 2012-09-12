@@ -18,7 +18,7 @@ namespace SachsenCoder.Talisa.WinFormsGui
             Application.SetCompatibleTextRenderingDefault(false);
 
             var mainForm = new MainForm();
-            var mainFlow = new MainFlow(mainForm);
+            var mainFlow = new CoreEntry(mainForm);
             
             Application.Run(mainForm);
         }

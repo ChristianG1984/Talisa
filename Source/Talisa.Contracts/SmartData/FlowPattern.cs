@@ -20,6 +20,15 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
         public FlowPatternResult Match(FlowToken d)
         {
             var result = _matcherToMatchAgainstNext.Match(d.TokenType);
+            if (result.ContinueInfo == ContinueInfoEnum.TakeMyMatcher && result.HasMatcher) {
+                _matcherToMatchAgainstNext = result.MyMatcher;
+            } else if (result.ContinueInfo == ContinueInfoEnum.TakeBaseMatcher) {
+                _matcherToMatchAgainstNext = _baseMicroMatcher;
+            }
+
+            if (result.SuccessInfo == SuccessInfoEnum.FullMatch) {
+                
+            }
         }
 
         public FlowPattern Has(params FlowTokenTypeEnum[] startFlowTokens)
@@ -96,5 +105,6 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
         private MicroMatcher _matcherToAssignMetaInfo;
         private MicroMatcher _matcherToMatchAgainstNext;
         private FlowAstElementTypeEnum _flowAstElementType;
+        private FlowPatternResult _flowPatternResult;
     }
 }

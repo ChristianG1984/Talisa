@@ -40,5 +40,10 @@ namespace SachsenCoder.Talisa.WinFormsGui
             }
             treeFlowToken.EndUpdate();
         }
+
+        public void ReceiveFlowAst(FlowAst flowAst)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
