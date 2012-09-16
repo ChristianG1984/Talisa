@@ -20,6 +20,7 @@ namespace SachsenCoder.Talisa.Core
             createFlowToken.Result += userInterface.ReceiveFlowTokenList;
             createFlowToken.Result += createFlowPatternResult.Process;
             createFlowPatternResult.Result += createFlowAst.Process;
+            createFlowAst.Result += userInterface.ReceiveFlowAst;
         }
     }
 }

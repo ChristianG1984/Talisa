@@ -15,25 +15,31 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
             _currentMicroMatcher = _baseMicroMatcher;
             _matcherToAssignMetaInfo = _currentMicroMatcher;
             _matcherToMatchAgainstNext = _currentMicroMatcher;
+            _flowPatternResult = new FlowPatternResult();
         }
 
-        public FlowPatternResult Match(FlowToken d)
+        public FlowPatternResult Match(FlowToken flowToken)
         {
-            var result = _matcherToMatchAgainstNext.Match(d.TokenType);
+            var result = _matcherToMatchAgainstNext.Match(flowToken.TokenType);
             if (result.ContinueInfo == ContinueInfoEnum.TakeMyMatcher && result.HasMatcher) {
                 _matcherToMatchAgainstNext = result.MyMatcher;
             } else if (result.ContinueInfo == ContinueInfoEnum.TakeBaseMatcher) {
                 _matcherToMatchAgainstNext = _baseMicroMatcher;
             }
 
-            if (result.SuccessInfo == SuccessInfoEnum.FullMatch) {
-                
+            if (result.SuccessInfo == SuccessInfoEnum.PartialMatch || result.SuccessInfo == SuccessInfoEnum.EndlessMatch) {
+                _flowPatternResult.AddSuccesfulToken(flowToken, _flowAstElementType);
+            } else if (result.SuccessInfo == SuccessInfoEnum.FullMatch) {
+                _flowPatternResult.AddLastSuccesfulToken(flowToken, _flowAstElementType);
+            } else if (result.SuccessInfo == SuccessInfoEnum.NoMatch) {
+                _flowPatternResult.AddWrongToken(flowToken, _flowAstElementType);
             }
+            return _flowPatternResult;
         }
 
-        public FlowPattern Has(params FlowTokenTypeEnum[] startFlowTokens)
+        public FlowPattern Has(params FlowTokenTypeEnum[] flowTokens)
         {
-            addMultipleTokenTypes(startFlowTokens);
+            addMultipleTokenTypes(flowTokens);
             return this;
         }
 
@@ -62,6 +68,13 @@ namespace SachsenCoder.Talisa.Contracts.SmartData
         public FlowPattern TerminateEndlessCount()
         {
             return WithMetaInfos(MicroMatcherMetaInfoEnum.TerminateEndlessCount);
+        }
+
+        public void Reset()
+        {
+            _flowPatternResult = new FlowPatternResult();
+            _currentMicroMatcher = _baseMicroMatcher;
+            _matcherToMatchAgainstNext = _currentMicroMatcher;
         }
 
         private void addNewMatcher()

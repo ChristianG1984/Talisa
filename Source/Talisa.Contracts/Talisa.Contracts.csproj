@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\AstComment.cs" />
     <Compile Include="Data\FlowAst.cs" />
     <Compile Include="Data\FlowAstElementTypeEnum.cs" />
     <Compile Include="Data\FlowToken.cs" />
@@ -47,8 +48,10 @@
     <Compile Include="IUserInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmartData\ContinueInfoEnum.cs" />
+    <Compile Include="SmartData\FlowAstElement.cs" />
     <Compile Include="SmartData\FlowPattern.cs" />
     <Compile Include="SmartData\FlowPatternResult.cs" />
+    <Compile Include="SmartData\FlowPatternResultElement.cs" />
     <Compile Include="SmartData\MicroMatcher.cs" />
     <Compile Include="SmartData\MicroMatcherMetaInfoEnum.cs" />
     <Compile Include="SmartData\MicroMatcherResult.cs" />

@@ -22,6 +22,7 @@ namespace SachsenCoder.Talisa.Core.Leafs
             foreach (var d in data) {
                 result = commentPattern.Match(d);
             }
+            commentPattern.Reset();
 
             Result(result);
         }

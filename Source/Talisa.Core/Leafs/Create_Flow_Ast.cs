@@ -11,7 +11,13 @@ namespace SachsenCoder.Talisa.Core.Leafs
     {
         public void Process(FlowPatternResult data)
         {
+            var flowAst = new FlowAst();
 
+            foreach (var content in data.Content) {
+                flowAst.Add(content);
+            }
+
+            Result(flowAst);
         }
 
         public event Action<FlowAst> Result;

@@ -43,7 +43,18 @@ namespace SachsenCoder.Talisa.WinFormsGui
 
         public void ReceiveFlowAst(FlowAst flowAst)
         {
-            throw new NotImplementedException();
+            treeFlowAst.BeginUpdate();
+            treeFlowAst.Nodes.Clear();
+            foreach (var flowElement in flowAst.FlowAstElements) {
+                var node = new TreeNode();
+                node.Text = flowElement.FlowAstElementType.ToString();
+                if (flowElement.FlowAstElementType == FlowAstElementTypeEnum.Comment) {
+                    node.Nodes.Add((flowElement.Content as AstComment).RealContent);
+                }
+                node.ExpandAll();
+                treeFlowAst.Nodes.Add(node);
+            }
+            treeFlowAst.EndUpdate();
         }
     }
 }
